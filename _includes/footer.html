@@ -1,0 +1,23 @@
+<div class="footer">
+  <div class="container">
+    <div class="row">
+      {% if site.github_username %}
+      <div class="footer-col col-md-4 text-center"><a href="https://github.com/{{ site.github_username }}" class="github center-block" title="Check out my GitHub" target="_blank">github</a></div>
+      {% endif %}
+
+      {% if site.email %}
+      <div class="footer-col col-md-4 text-center"><a href="mailto:{{ site.email }}" class="email center-block" title="Shoot me an email">email</a></div>
+      {% endif %}
+
+      {% if site.twitter_username %}
+      <div class="footer-col col-md-4 text-center"><a href="https://twitter.com/{{ site.twitter_username }}" class="twitter center-block" title="Check out my rarely updated Twitter" target="_blank">twitter</a></div>
+      {% endif %}
+    </div>  
+  </div>
+
+  <div class="ribbon"></div>
+
+</div>
+
+<script src="{{ site.baseurl }}/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="{{ site.baseurl }}/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js"></script>

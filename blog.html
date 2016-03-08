@@ -1,0 +1,33 @@
+---
+layout: default
+title: Blog
+permalink: /blog/
+---
+
+
+<div class="row">
+
+        <div class="col-sm-4 col-sm-push-8 blog-categories">
+          <h3 class="title">Categories</h3>
+          <div class="list-group">
+            {% for category in site.categories %}
+              <a href="#" class="list-group-item">{{ category[0] }}</a>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="col-sm-8 col-sm-pull-4">
+
+          {% for post in site.posts %}
+            <div class="article">
+              <h1 class="title">{{ post.title }} <small class="pull-right">{{ post.date | date: "%b %-d, %Y" }}</small></h1>
+              <p>This is the blog post excerpt.</p>
+              <a href="{{ post.url | prepend: site.baseurl }}" class="btn btn-default">Read More</a>
+            </div>
+          {% endfor %}
+
+        </div>
+
+</div>
+
+<p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>

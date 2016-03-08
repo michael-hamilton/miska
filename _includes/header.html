@@ -1,0 +1,25 @@
+<div class="header">
+  <div class="main-nav">
+    <div class="container">
+      <ul class="nav-list">
+        {% for my_page in site.pages %}
+          {% if my_page.title %}
+          <li class="page-link"><a href="{{ my_page.url | prepend: site.baseurl }}">{{ my_page.title }}</a></li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="header-text">
+      {% if page.layout == "home" %}
+      <h1 class="header-title">Michael Hamilton</h1>
+      <h2 class="header-subtitle">I'm a javascript developer.<span class="blink">|</span></h2>
+      {% else %}
+      <h1 class="header-title">{{ page.title }}</h1>
+      {% endif %}
+
+    </div>
+  </div>
+</div>
