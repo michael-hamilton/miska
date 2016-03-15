@@ -9,9 +9,9 @@
         {% for _page in sorted_pages %}
           {% if _page.title %}
             {% if _page.menu == "main" %}
-              <li class="page-link {% if _page.url == page.url %} active {% endif %}">
+              <!-- <li class="page-link {% if _page.url == page.url %} active {% endif %}">
                 <a href="{{ _page.url | prepend: site.baseurl }}">{{ _page.title }}</a>
-              </li>
+              </li> -->
             {% endif %}
           {% endif %}
         {% endfor %}
