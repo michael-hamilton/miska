@@ -1,0 +1,24 @@
+---
+layout: page
+title: Projects
+permalink: /projects/
+menu: main
+order: 3
+---
+
+<div class="row">
+
+	{% assign sorted_pages = (site.pages | sort: 'order') %}
+        {% for _page in sorted_pages %}
+          {% if _page.title %}
+            {% if _page.menu == "project" %}
+		      	<div class="article">
+		          <h1 class="title">{{ _page.title }}</h1>
+		          <p>This is the blog post excerpt.</p>
+		          <a href="{{ _page.url | prepend: site.baseurl }}" class="btn btn-default">Read More</a>
+		    	</div>
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+
+</div>
