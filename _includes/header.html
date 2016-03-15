@@ -5,11 +5,14 @@
         <li class="page-link {% if page.url == "/" %} active {% endif %}">
           <a href="/{{ site.baseurl }}">About</a>
         </li>
-        {% for _page in site.pages %}
+        {% assign sorted_pages = (site.pages | sort: 'order') %}
+        {% for _page in sorted_pages %}
           {% if _page.title %}
-            <li class="page-link {% if _page.url == page.url %} active {% endif %}">
-              <a href="{{ _page.url | prepend: site.baseurl }}">{{ _page.title }}</a>
-            </li>
+            {% if _page.menu == "main" %}
+              <li class="page-link {% if _page.url == page.url %} active {% endif %}">
+                <a href="{{ _page.url | prepend: site.baseurl }}">{{ _page.title }}</a>
+              </li>
+            {% endif %}
           {% endif %}
         {% endfor %}
       </ul>
