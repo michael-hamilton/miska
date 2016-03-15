@@ -1,37 +1,48 @@
-//generates a ribbon with random colors.  height and width must be a CSS appropriate value
-//height: String, width: String, amount: Integer
-function ribbon(height, width, amount){
-	
-	//default parameters
-	height = height || "100%";
-	width = width || "5px";
-	amount = amount || 500;
+var Ribbon = function(height, width, selector) {
+	this.height = height;
+	this.width = width;
+	this.count = 0;
+	this.selector = selector;
+}
 
-	//returns a randomly generated hex color code.  prefix is prepended to the returned string
-	//prefix: String
-	function randColor(prefix){
-		//if no prefix is provided, set it to be '#'
-		prefix = prefix || "#";
+Ribbon.prototype.init = function() {
+	this.resize();
+	this.update();
+}
 
-		//array of hex values, declare color variable with initial value of prefix
-		var values = [0,1,2,3,4,5,6,7,8,9,'a','b','c','d','e','f'],
-			color = prefix;
+Ribbon.prototype.randColor = function() {
+	var values = [0,1,2,3,4,5,6,7,8,9,'a','b','c','d','e','f'],
+		color = "#";
 
-		//generates the hex string and appends each hex value to color
-		for(var i = 0; i<6; i++){
-			color += values[Math.floor(Math.random() * (15))];
-		}
-
-		return color;
+	for(var i = 0; i<6; i++) {
+		color += values[Math.floor(Math.random() * (15))];
 	}
 
-	//applies default styles to .ribbon container
-	$('.ribbon').css({"width": "100%", "height": height, "overflow": "hidden"});
+	return color;
+}
 
-	//fills .ribbon container with .square divs that are styled and randomly colored
-	for(var i = 0; i < amount; i++){
-		$('.ribbon').append('<div class="square" style="float:left; height:'+height+'; width:'+Math.floor(Math.random() * (15))+'px; background-color:'+randColor()+'"></div>');
+Ribbon.prototype.render = function() {
+	$(this.selector).css({"width": "100%", "height": this.height, "overflow": "hidden"});
+	$(this.selector).empty();
+	for(var i = 0; i < this.count; i++){
+		$(this.selector).append('<div class="square" style="float:left; height:'+this.height+'; width:'+Math.floor(Math.random() * (15))+'px; background-color:'+this.randColor()+'"></div>');
 	}
 }
 
-$(document).ready(ribbon("5px", "10px", 300));
+Ribbon.prototype.resize = function() {
+	window.onresize = (function() {
+		this.update();
+	}).bind(this);
+}
+
+Ribbon.prototype.update = function() {
+	this.count = window.innerWidth*.30;
+	this.render();
+}
+
+function init() {
+	var r = new Ribbon('5px', '10px', '.ribbon');
+	r.init();
+}
+
+$(document).ready(init());
