@@ -9,9 +9,9 @@
         {% for _page in sorted_pages %}
           {% if _page.title %}
             {% if _page.menu == "main" %}
-              <!-- <li class="page-link {% if _page.url == page.url %} active {% endif %}">
+              <li class="page-link {% if _page.url == page.url %} active {% endif %}">
                 <a href="{{ _page.url | prepend: site.baseurl }}">{{ _page.title }}</a>
-              </li> -->
+              </li>
             {% endif %}
           {% endif %}
         {% endfor %}
@@ -24,6 +24,8 @@
       {% if page.layout == "home" %}
       <h1 class="header-title">Michael Hamilton</h1>
       <h2 class="header-subtitle">I'm a javascript developer.<span class="blink">|</span></h2>
+      {% elsif page.is_post %}
+      <h1 class="header-title">Blog</h1>
       {% else %}
       <h1 class="header-title">{{ page.title }}</h1>
       {% endif %}

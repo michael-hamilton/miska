@@ -18,3 +18,11 @@ github_username:  michael-hamilton
 
 # Build settings
 markdown: kramdown
+
+defaults:
+  -
+    scope:
+      path: ""
+      type: posts
+    values:
+      is_post: true
